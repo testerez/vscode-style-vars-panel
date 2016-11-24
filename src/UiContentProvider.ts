@@ -18,21 +18,22 @@ export default class UiContentProvider implements vscode.TextDocumentContentProv
   }
 
   private createCssSnippet() {
-    let editor = vscode.window.activeTextEditor;
-    if (!(editor.document.languageId in { css: 1, scss: 1 })) {
-      return this.errorSnippet("Active editor doesn't show a CSS document - no properties to preview.")
-    }
     return this.extractSnippet();
   }
 
-  private extractSnippet(): string {
+  private getSelectedWord() {
     const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return null;
+    }
     const wordSelect = editor.document.getWordRangeAtPosition(editor.selection.anchor);
-    const word = wordSelect
+    return wordSelect
       ? editor.document.getText(wordSelect)
       : null;
+  }
 
-    return renderContent(word, this.getSassVars());
+  private extractSnippet(): string {
+    return renderContent(this.getSelectedWord(), this.getSassVars());
   }
 
   private errorSnippet(error: string): string {

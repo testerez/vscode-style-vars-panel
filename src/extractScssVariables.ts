@@ -11,7 +11,6 @@ function getSassToJsSassPath(){
   )
   return path.join(root, 'sass/sass-to-js');
 }
-
 const BOUNDARY = '__JSON_CONTENT_BOUNDARY__';
 
 export default function extractScssVariables(sassFilename: string) {

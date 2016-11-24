@@ -10,17 +10,23 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.window.onDidChangeActiveTextEditor(e => {
     currentEditor = e || currentEditor;
-    provider.update(previewUri);
+    if (e) {
+      provider.update(previewUri);
+    }
   });
 
   vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-    if (e.document === vscode.window.activeTextEditor.document) {
+    const editor = vscode.window.activeTextEditor;
+    if (!e || !editor) {
+      return;
+    }
+    if (e.document === editor.document) {
       provider.update(previewUri);
     }
   });
 
   vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-    if (e.textEditor === vscode.window.activeTextEditor) {
+      if (e.textEditor === vscode.window.activeTextEditor) {
       provider.update(previewUri);
     }
   })
@@ -44,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
     if (!editor) {
       return;
     }
-    editor.show()
+    editor.show();
     editor.edit(function (editBuilder) {
       editBuilder.replace(
         editor.document.getWordRangeAtPosition(editor.selection.anchor) ||

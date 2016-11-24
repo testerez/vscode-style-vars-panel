@@ -1,3 +1,9 @@
+import * as console from 'console';
+import { error } from 'util';
+import { equal } from 'assert';
+import { exec } from 'child_process';
+import { emit } from 'cluster';
+import { DocumentLink } from 'vscode';
 import { diff, filterSort, isColor, isDimen, parseColor, parseDimen } from './util';
 import { map, chain } from 'lodash';
 require("string_score");
@@ -110,6 +116,12 @@ function getSetVarUri(varName: string) {
   }));
 }
 
+function getToggleSectionUri(sectionName: string) {
+  return encodeURI('command:extension.toggleSection?' + JSON.stringify({
+    sectionName,
+  }));
+}
+
 function renderVarList(vars: SassVar[]) {
   return vars.map(({k, v, isColor}) => (`
     <a class="var ${isColor ? 'color' : ''}" style="${isColor ? `background:${v}` : ''}" href="${getSetVarUri(k)}">
@@ -162,7 +174,7 @@ function renderSelectionSection(selectedValue: string, vars: SassVar[]) {
   const isC = isColor(selectedValue);
   const styles = isC ? `background: ${selectedValue}` : '';
   return `
-    ${renderSectionTitle(`Matches for <span class="selected-val">${selectedValue}</span>`)}
+    ${renderSectionTitle(`Matches for <span class="selected-val">${selectedValue}</span>`, 'selected')}
     <section class="${isC ? 'matching-colors' : ''}" style="${styles}">
       ${matches.length
         ? renderVarList(matches)
@@ -180,11 +192,14 @@ interface SassVar {
   isMq: boolean,
 };
 
-let idCmpt = 0;
-function renderSectionTitle(title: string) {
-  const id = `__id${idCmpt++}`;
+function renderSectionTitle(title: string, id: string) {
   return `
-    <input class="toggle-box" id="${id}" type="checkbox" checked />
+    <input
+      class="toggle-box"
+      id="${id}"
+      type="checkbox"
+      checked
+    />
     <label class="h2" for="${id}">${title}</label>
   `;
 }
@@ -194,9 +209,27 @@ function renderSection(title: string, content: string) {
     return '';
   }
   return [
-    title && renderSectionTitle(title),
+    title && renderSectionTitle(title, title.replace(/ /g, '_')),
     content && `<section>${content}</section>`,
   ].filter(s => s).join('\n');
+}
+
+function renderJS() {
+  return `
+    <script>
+      window.state = window.state || {
+        collapsed: {},
+      };
+
+      console.log(JSON.stringify(state, null, 2));
+      document.querySelectorAll('[type=checkbox]').forEach(e => {
+        e.checked = !state.collapsed[e.id];
+        e.addEventListener('change', () => {
+          state.collapsed[e.id] = !e.checked;
+        });
+      })
+    </script>
+  `;
 }
 
 export function renderContent(selectedVal: string | null, varsMap: {}) {
@@ -235,6 +268,8 @@ export function renderContent(selectedVal: string | null, varsMap: {}) {
           'Other variables',
           renderVarList(vars.filter(o => !o.isColor && !o.isDimen && !o.isMq))
         )}
+
+        ${renderJS()}
     </body>
   `;
 }
