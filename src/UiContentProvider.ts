@@ -1,6 +1,8 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
-import { renderContent } from './view';
-import { isColor, isDimen } from './util';
+import * as mainView from './mainview';
+import * as noVarsView from './noVarsView';
+import * as fs from 'fs';
 
 export default class UiContentProvider implements vscode.TextDocumentContentProvider {
   private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
@@ -33,20 +35,22 @@ export default class UiContentProvider implements vscode.TextDocumentContentProv
   }
 
   private extractSnippet(): string {
-    return renderContent(this.getSelectedWord(), this.getSassVars());
-  }
-
-  private errorSnippet(error: string): string {
-    return `
-                <body style="padding: 20px;">
-                    ${error}
-                </body>
-            `;
+    const styleVars = this.getSassVars();
+    return Object.keys(styleVars).length
+      ? mainView.getHTML(this.getSelectedWord(), styleVars)
+      : noVarsView.getHTML();
   }
 
   private getSassVars() {
-    // TODO: get path from settings
-    return require('./sampleVars').default;
-    //return extractScssVariables('/Users/tomesterez/projects/pbv4/src/styles/_theme-dark.scss');
+    console.log('getting vars');
+    try {
+      return JSON.parse(fs.readFileSync(
+        path.join(vscode.workspace.rootPath, '.vscode', 'style-variables.json'),
+        'utf8'
+      ));
+    } catch(e) {
+      console.error('Unable to load style variables', e);
+      return {};
+    }
   }
 }

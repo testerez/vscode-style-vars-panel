@@ -1,9 +1,3 @@
-import * as console from 'console';
-import { error } from 'util';
-import { equal } from 'assert';
-import { exec } from 'child_process';
-import { emit } from 'cluster';
-import { DocumentLink } from 'vscode';
 import { diff, filterSort, isColor, isDimen, parseColor, parseDimen } from './util';
 import { map, chain } from 'lodash';
 require("string_score");
@@ -113,12 +107,6 @@ function renderCSS() {
 function getSetVarUri(varName: string) {
   return encodeURI('command:extension.insertVar?' + JSON.stringify({
     name: varName,
-  }));
-}
-
-function getToggleSectionUri(sectionName: string) {
-  return encodeURI('command:extension.toggleSection?' + JSON.stringify({
-    sectionName,
   }));
 }
 
@@ -232,7 +220,7 @@ function renderJS() {
   `;
 }
 
-export function renderContent(selectedVal: string | null, varsMap: {}) {
+export function getHTML(selectedVal: string | null, varsMap: {}) {
   if (selectedVal && selectedVal.length < 2) {
     selectedVal = null;
   }
