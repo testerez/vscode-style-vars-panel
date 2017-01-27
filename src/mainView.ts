@@ -110,7 +110,7 @@ function getSetVarUri(varName: string) {
   }));
 }
 
-function renderVarList(vars: SassVar[]) {
+function renderVarList(vars: StyleVar[]) {
   return vars.map(({k, v, isColor}) => (`
     <a class="var ${isColor ? 'color' : ''}" style="${isColor ? `background:${v}` : ''}" href="${getSetVarUri(k)}">
       <span><b>${k}</b>: <span class="var-value">${v}</span></span>
@@ -118,7 +118,7 @@ function renderVarList(vars: SassVar[]) {
   `)).join('\n');
 }
 
-function getMatchingVars(selectedValue: string, vars: SassVar[]) {
+function getMatchingVars(selectedValue: string, vars: StyleVar[]) {
   const parsedColor = parseColor(selectedValue);
   if (parsedColor) {
     return chain(vars)
@@ -127,7 +127,7 @@ function getMatchingVars(selectedValue: string, vars: SassVar[]) {
       .filter(p => p[1] < 17)
       .sortBy(p => p[1])
       .map(p => p[0])
-      .value() as SassVar[];
+      .value() as StyleVar[];
   } else if (isDimen(selectedValue)) {
     const dimen = parseDimen(selectedValue)!;
     return filterSort(vars, o => {
@@ -157,7 +157,7 @@ function getMatchingVars(selectedValue: string, vars: SassVar[]) {
   );
 }
 
-function renderSelectionSection(selectedValue: string, vars: SassVar[]) {
+function renderSelectionSection(selectedValue: string, vars: StyleVar[]) {
   const matches = getMatchingVars(selectedValue, vars).slice(0, 10);
   const isC = isColor(selectedValue);
   const styles = isC ? `background: ${selectedValue}` : '';
@@ -172,7 +172,7 @@ function renderSelectionSection(selectedValue: string, vars: SassVar[]) {
     `;
 }
 
-interface SassVar {
+interface StyleVar {
   k: string,
   v: string,
   isColor: boolean,
@@ -230,7 +230,7 @@ export function getHTML(selectedVal: string | null, varsMap: {}) {
     isColor: isColor(v),
     isDimen: isDimen(v),
     isMq: /screen and \(.+\)$/.test(v),
-  })).filter(o => o) as SassVar[];
+  })).filter(o => o) as StyleVar[];
     
   return `
     <style>${renderCSS()}</style>

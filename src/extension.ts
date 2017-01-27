@@ -31,12 +31,12 @@ export function activate(context: vscode.ExtensionContext) {
     }
   })
 
-  let disposable = vscode.commands.registerCommand('extension.showSassVariables', () => {
+  let disposable = vscode.commands.registerCommand('extension.showStyleVarsPanel', () => {
     return vscode.commands.executeCommand(
       'vscode.previewHtml',
       previewUri,
       vscode.ViewColumn.Two,
-      'SASS Variables'
+      'Style Vars'
     ).then(s => {
       const editor = vscode.window.activeTextEditor;
       editor.show()
