@@ -25,7 +25,8 @@
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "publish": "vsce publish"
   },
   "dependencies": {
     "@types/string_score": "^0.1.27",
@@ -37,10 +38,11 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.38",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0",
-    "mocha": "^2.3.3",
+    "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vsce": "^1.18.0",
+    "vscode": "^1.0.0"
   }
 }
