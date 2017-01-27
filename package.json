@@ -1,9 +1,13 @@
 {
   "name": "style-vars-panel",
   "displayName": "Style vars panel",
-  "description": "Replacing static value in your style files with the closest variable is now super easy!",
+  "description": "Replacing static CSS values with your closest variable is now super easy!",
   "version": "0.0.1",
   "publisher": "tomesterez",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "engines": {
     "vscode": "^1.5.0"
   },
