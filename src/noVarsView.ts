@@ -36,7 +36,7 @@ export function getHTML() {
           Location:
         </p>
         <p>
-          <code>.vscode/style-variables.json</code>
+          <code>.vscode/style-vars.json</code>
         </p>
         <p>
           Format:

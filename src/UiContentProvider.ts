@@ -45,7 +45,7 @@ export default class UiContentProvider implements vscode.TextDocumentContentProv
     console.log('getting vars');
     try {
       return JSON.parse(fs.readFileSync(
-        path.join(vscode.workspace.rootPath, '.vscode', 'style-variables.json'),
+        path.join(vscode.workspace.rootPath, '.vscode', 'style-vars.json'),
         'utf8'
       ));
     } catch(e) {
