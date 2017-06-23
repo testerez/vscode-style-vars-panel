@@ -2,7 +2,7 @@
   "name": "style-vars-panel",
   "displayName": "Style vars panel",
   "description": "Replacing static CSS values with your closest variable is now super easy!",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "tomesterez",
   "repository": {
     "type": "git",

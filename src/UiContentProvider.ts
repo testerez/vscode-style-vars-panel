@@ -35,13 +35,13 @@ export default class UiContentProvider implements vscode.TextDocumentContentProv
   }
 
   private extractSnippet(): string {
-    const styleVars = this.getSassVars();
+    const styleVars = this.getStyleVars();
     return Object.keys(styleVars).length
       ? mainView.getHTML(this.getSelectedWord(), styleVars)
       : noVarsView.getHTML();
   }
 
-  private getSassVars() {
+  private getStyleVars() {
     console.log('getting vars');
     try {
       return JSON.parse(fs.readFileSync(
