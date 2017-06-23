@@ -1,10 +1,8 @@
-### Access your style variables from a side panel (SASS, LESS, PostCSS...)
+Access your style variables from a side panel (SASS, LESS, PostCSS...)
 
-<p align="center">
-  <img src="screenshot.png" height="500"/>
-</p>
+<img src="screenshot.png" height="500"/>
 
-### Variable matching
+### Variables matching
 
 If you use SASS, LESS, PostCSS or any CSS prepocessor, you probably use variables to set colors, font sizes, dimentions...
 And if you integrate your UI based on images provided by your design team, you probably try to match the colors from the design with your existing variables. This process is not fun and it's temptating to use a color picker and just paste static values.
