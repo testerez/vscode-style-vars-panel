@@ -30,7 +30,7 @@ File: `.vscode/style-vars.json`
 
 If you are using SCSS, you can generate this file easily with extract-sass-vars:
 
-`npm i -g extract-sass-vars`
+`npm i -g extract-sass-vars`   
 `extract-sass-vars yourVariablesFile.scss > .vscode/style-vars.json`
 
 To keep it up to date, add a postinstall script in your package.json ;)
