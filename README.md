@@ -1,13 +1,17 @@
+### Access your style variables from a side panel (SASS, LESS, PostCSS...)
+
+<p align="center">
+  <img src="screenshot.png" height="500"/>
+</p>
+
+### Variable matching
+
 If you use SASS, LESS, PostCSS or any CSS prepocessor, you probably use variables to set colors, font sizes, dimentions...
 And if you integrate your UI based on images provided by your design team, you probably try to match the colors from the design with your existing variables. This process is not fun and it's temptating to use a color picker and just paste static values.
 
 The good new is that if you do take this lazy route, it's ok! The side panel will show you the closest available variables for your cursor position. Click on the one you want to insert and youre done!
 
 It makes it also supper easy to update your existing code to use more variables.
-
-<p align="center">
-  <img src="screenshot.png" height="500"/>
-</p>
 
 ### How to use it:
 
@@ -27,3 +31,5 @@ File: `.vscode/style-vars.json`
 > `vscode-sass-vars` will sort and categorize those variables (color, dimention, other...)
 
 Once installed, run this command: **"> Show style vars panel"**
+
+### PRs are welcome!
