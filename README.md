@@ -28,7 +28,7 @@ File: `.vscode/style-vars.json`
 ```
 > Those variables will be automatically sorted and categorized (color, dimention, other...)
 
-If you are using SCSS, you can generate this file easily with extract-sass-vars:
+If you are using SCSS, you can generate this file easily with [extract-sass-vars](https://github.com/testerez/extract-sass-vars):
 
 `npm i -g extract-sass-vars`   
 `extract-sass-vars yourVariablesFile.scss > .vscode/style-vars.json`
