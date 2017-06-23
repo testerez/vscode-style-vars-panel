@@ -22,7 +22,7 @@
     "commands": [
       {
         "command": "extension.showStyleVarsPanel",
-        "title": "Show style vars pannel"
+        "title": "Show style vars panel"
       }
     ]
   },
