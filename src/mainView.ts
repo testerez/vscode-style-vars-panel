@@ -15,7 +15,7 @@ function renderCSS() {
       color: #fff;
       font-size: 12px;
       font-family: Menlo, monaco, Consolas;
-      padding: 0 15px 0 0;
+      padding: 0 15px;
       max-width: 100%;
     }
     .h2 {
