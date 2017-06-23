@@ -13,6 +13,8 @@ It makes it also supper easy to update your existing code to use more variables.
 
 ### How to use it:
 
+To open the panel, run this vscode command: **"> Show style vars panel"**
+
 Right now this extention is not able to gather the available variables accros your project. So you have to provide the list yourself:
 
 #### Variables list format:
@@ -27,7 +29,5 @@ File: `.vscode/style-vars.json`
 }
 ```
 > `vscode-sass-vars` will sort and categorize those variables (color, dimention, other...)
-
-Once installed, run this command: **"> Show style vars panel"**
 
 ### PRs are welcome!
