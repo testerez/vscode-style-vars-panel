@@ -1,4 +1,4 @@
-Access your style variables from a side panel (SASS, LESS, PostCSS...)
+Access your style variables from a side panel (CSS, SASS, LESS, PostCSS...)
 
 <img src="screenshot.png" height="500"/>
 
