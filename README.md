@@ -17,8 +17,6 @@ To open the panel, run this vscode command: **"> Show style vars panel"**
 
 Right now this extention is not able to gather the available variables accros your project. So you have to provide the list yourself:
 
-#### Variables list format:
-
 File: `.vscode/style-vars.json`
 
 ```js
