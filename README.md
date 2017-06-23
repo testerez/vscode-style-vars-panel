@@ -21,7 +21,7 @@ Right now this extention is not able to gather the available variables accros yo
 
 File: `.vscode/style-vars.json`
 
-```json
+```js
 {
   "$red": "#f00",
   "$my-font": "Times, serif"
