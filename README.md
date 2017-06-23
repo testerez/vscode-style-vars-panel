@@ -1,9 +1,7 @@
 If you use SASS, LESS, PostCSS or any CSS prepocessor you probably use variables to set colors, font sizes, dimentions...
-And if you integrate your UI based on images provided by your design team, you probably try to match the colors from the design with your existing variables.
-This extention make this process easy by promoting a simple workflow:
-1- Use a color picker to get the exact colors from the design and just paste those static values in your CSS
-2- Once your done, `Open style vars panel` and simply put your cursor on a color code (`#FFFFFF`), a dimentions (`12px`) or basically anything... The side panel will show you the closest available variables.
-3- Click on the variable you want to use and your static value will be replaced!
+And if you integrate your UI based on images provided by your design team, you probably try to match the colors from the design with your existing variables. This process is not fun and it's temptating to use a color picker and just paste static values.
+
+The good new is that if you do take this lazy route, it's ok! The side panel will show you the closest available variables for your cursor position. Click on the one you want to insert and youre done!
 
 ### How to use it:
 
@@ -20,6 +18,7 @@ File: `.vscode/style-vars.json`
   // ...
 }
 ```
+> `vscode-sass-vars` will sort and categorize those variables (color, dimention, other...)
 
 Once installed, run this command: **"> Show style vars panel"**
 
