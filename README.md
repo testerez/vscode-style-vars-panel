@@ -1,6 +1,6 @@
 Access your style variables from a side panel (CSS, SASS, LESS, PostCSS...)
 
-<img src="https://github.com/testerez/vscode-style-vars-panel/raw/master/screenshot.png" height="500"/>
+<img src="https://github.com/testerez/vscode-style-vars-panel/raw/master/screencast.gif"/>
 
 ### Variables matching
 
